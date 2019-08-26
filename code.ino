@@ -6,8 +6,8 @@ OledWingAdafruit display;
 
 short STATE = 0;
 unsigned int nextTime = 0;
-
-//TODO: gestion des problèmes trafic
+const int LED_TRAFFIC = 12;
+//TODO: gestion des problèmes traffic : untested
 void setup() {
     display.setup();
 	display.clearDisplay();
@@ -15,6 +15,8 @@ void setup() {
 
     Particle.subscribe("hook-response/horaire_ligne7", myHandler7, MY_DEVICES);
     Particle.subscribe("hook-response/horaire_185_paris", myHandler185, MY_DEVICES);
+    Particle.subscribe("hook-response/etat_ligne7", myHandlerTraffic, MY_DEVICES);
+
 }
 
 
@@ -41,6 +43,7 @@ void loop() {
     String data = String(10);
     if (STATE == 0){
         Particle.publish("horaire_ligne7", data, PRIVATE);
+        Particle.publish("etat_ligne7", data, PRIVATE);
     }
     else if (STATE == 1){
         Particle.publish("horaire_185_paris", data, PRIVATE);
@@ -66,6 +69,13 @@ void myHandler185(const char *event, const char *data) {
     int time1, time2;
     parse_response(data, &time1, &time2);
     display_time( time1,  time2) ;   
+}
+
+void myHandlerTraffic(const char *event, const char *data) {
+    Particle.publish("Ligne 7 traffic : recu", data, PRIVATE);
+    const char *normal = "normal";
+    int comparaison = strcmp(data, normal);
+    digitalWrite(LED_TRAFFIC, comparaison != 0);
 }
 
 void parse_response(const char *data, int* time1, int* time2){
@@ -109,7 +119,15 @@ void display_time(int time1, int time2){
     display.setTextSize(4);
 	display.setCursor(36,2);
 	display.println(String(time1));
+	
+	if (time2<10){
 	display.setCursor(80,2);
+	}
+	else{
+	    display.setTextSize(3);
+	    //display.setCursor(80,2);
+	}
 	display.println(String(time2));
 	display.display();
+
 }
