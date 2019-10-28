@@ -14,7 +14,7 @@ J'ai utilisé :
 
 ## Photos
 
-![Image1](./img/1.jpg =300x) ![Image2](./img/2.jpg =300x) ![Image3](./img/3.jpg =300x)
+![Image1](./img/1.jpg?raw=true =300x "Title) ![Image2](./img/2.jpg =300x) ![Image3](./img/3.jpg =300x)
 
 ## Installation
 
