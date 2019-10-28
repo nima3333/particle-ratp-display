@@ -6,7 +6,7 @@ OledWingAdafruit display;
 
 short STATE = 0;
 unsigned int nextTime = 0;
-const int LED_TRAFFIC = A2;
+const int LED_TRAFIC = A2;
 
 void setup() {
     display.setup();
@@ -16,8 +16,8 @@ void setup() {
     Particle.subscribe("hook-response/horaire_ligne7", myHandler7, MY_DEVICES);
     Particle.subscribe("hook-response/horaire_185_paris", myHandler185, MY_DEVICES);
     Particle.subscribe("hook-response/etat_ligne7", myHandlerTrafic, MY_DEVICES);
-    pinMode(LED_TRAFFIC, OUTPUT);
-    digitalWrite(LED_TRAFFIC, HIGH);
+    pinMode(LED_TRAFIC, OUTPUT);
+    digitalWrite(LED_TRAFIC, HIGH);
 }
 
 
@@ -73,10 +73,10 @@ void myHandler185(const char *event, const char *data) {
 }
 
 void myHandlerTrafic(const char *event, const char *data) {
-    Particle.publish("Ligne 7 traffic : recu", data, PRIVATE);
+    Particle.publish("Ligne 7 trafic : recu", data, PRIVATE);
     const char *normal = "normal";
     int comparaison = strcmp(data, normal);
-    digitalWrite(LED_TRAFFIC, comparaison != 0);
+    digitalWrite(LED_TRAFIC, comparaison != 0);
 }
 
 void parse_response(const char *data, int* time1, int* time2){

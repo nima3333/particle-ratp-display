@@ -14,11 +14,11 @@ J'ai utilisé :
 
 ## Photos
 
-A venir
+![Image1](./img/1.jpg =300x) ![Image2](./img/2.jpg =300x) ![Image3](./img/3.jpg =300x)
 
 ## Installation
 
-L'utilisation des librairies de requêtes https s'étant révélées complexes d'utilisation, j'ai préféré utilisé les webhooks disponibles sur la console Particle.
+Pour obtenir les informations de l'API, j'ai utilisé les webhooks disponibles sur la console Particle.
 
 Voici le custom template utilisé pour récupérer les horaires des métros à la station Place d'Italie sur la ligne 7 :
 ```
@@ -34,8 +34,14 @@ Voici le custom template utilisé pour récupérer les horaires des métros à l
 }
 ```
 
-Une fois les webhook mis en place, il suffit d'utiliser le code. Celui-ci fait appel à la librairie **oled-wing-adafruit** qu'il est peut-être nécessaire d'importer.
+Une fois les webhook mis en place, il suffit d'utiliser le code. Celui-ci fait appel à la librairie **oled-wing-adafruit** qu'il est nécessaire d'importer.
 
 ## Fonctionnement
 
-A venir
+Le bouton A permet de selectionner la ligne 7, le bouton B la ligne 185, et le bouton C d'eteindre l'écran. 
+
+
+L'écran affiche le temps d'attente des 2 prochains trains / bus.
+
+
+On peut signaler les problèmes de trafic en mettant une led sur A2.
