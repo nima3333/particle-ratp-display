@@ -44,4 +44,4 @@ Le bouton A permet de selectionner la ligne 7, le bouton B la ligne 185, et le b
 L'écran affiche le temps d'attente des 2 prochains trains / bus.
 
 
-On peut signaler les problèmes de trafic en mettant une led sur A2.
+On peut voir les problèmes de trafic en mettant une led sur A2.
